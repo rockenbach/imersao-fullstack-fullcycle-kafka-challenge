@@ -18,8 +18,8 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	consumer "https://github.com/rockenbach/imersao-fullstack-fullcycle-kafka-challenge/consumer"
-	producer "https://github.com/rockenbach/imersao-fullstack-fullcycle-kafka-challenge/producer"
+	"github.com/rockenbach/imersao-fullstack-fullcycle-kafka-challenge/consumer"
+	"github.com/rockenbach/imersao-fullstack-fullcycle-kafka-challenge/producer"
 )
 
 // kafkaCmd represents the kafka command
