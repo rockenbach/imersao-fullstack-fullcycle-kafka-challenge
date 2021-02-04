@@ -16,23 +16,20 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+
+	consumer "https://github.com/rockenbach/imersao-fullstack-fullcycle-kafka-challenge/consumer"
+	producer "https://github.com/rockenbach/imersao-fullstack-fullcycle-kafka-challenge/producer"
 )
 
 // kafkaCmd represents the kafka command
 var kafkaCmd = &cobra.Command{
 	Use:   "kafka",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Simulates kafka comunication",
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("kafka called")
+		go consumer.InitConsumer()
+		producer.InitProducer()
 	},
 }
 
