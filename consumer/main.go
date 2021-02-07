@@ -1,34 +1,32 @@
-package consumer
+package main
 
 import (
 	"fmt"
-	"os"
 
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
-func InitConsumer() {
+func main() {
 	configMap := &ckafka.ConfigMap{
-		"bootstrap.servers": os.Getenv("kafkaBootstrapServers"),
-		"group.id":          os.Getenv("kafkaConsumerGroupId"),
+		"bootstrap.servers": "kafka:9092",
+		"group.id":          "codepix",
 		"auto.offset.reset": "earliest",
 	}
 
 	c, err := ckafka.NewConsumer(configMap)
-
 	if err != nil {
 		panic(err)
 	}
 
-	topics := []string{os.Getenv("kafkaTopic")}
+	topics := []string{"teste"}
 	c.SubscribeTopics(topics, nil)
 
-	fmt.Println("Kafka Consumer has been started")
+	fmt.Println("kakfa consumer has been started")
 
 	for {
-		message, err := c.ReadMessage(-1)
+		msg, err := c.ReadMessage(-1)
 		if err == nil {
-			fmt.Println(string(message.Value))
+			fmt.Println(">>", string(msg.Value))
 		}
 	}
 }
